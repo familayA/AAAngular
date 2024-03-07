@@ -2430,23 +2430,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user1\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user1\\Documents\\computer\\angular\\project\\serever-good\\serever-good\\serever-good.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\תכנות\\שנה ב\\Angular\\פרויקט גיט בתיה\\AngularProject\\serever-good\\serever-good\\serever-good.csproj",
       "projectName": "serever-good",
-      "projectPath": "C:\\Users\\user1\\Documents\\computer\\angular\\project\\serever-good\\serever-good\\serever-good.csproj",
-      "packagesPath": "C:\\Users\\user1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user1\\Documents\\computer\\angular\\project\\serever-good\\serever-good\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\תכנות\\שנה ב\\Angular\\פרויקט גיט בתיה\\AngularProject\\serever-good\\serever-good\\serever-good.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\תכנות\\שנה ב\\Angular\\פרויקט גיט בתיה\\AngularProject\\serever-good\\serever-good\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2467,6 +2467,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2513,7 +2518,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

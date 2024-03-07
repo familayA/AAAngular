@@ -12,4 +12,10 @@ export class UserService {
   getUserByName(name: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${name}`)
   }
+
+  addUser(user: User):Observable<User> {
+    // this.productsList.push(product)
+    return this.http.post<User>(this.baseUrl, user)
+  }
+
 }
