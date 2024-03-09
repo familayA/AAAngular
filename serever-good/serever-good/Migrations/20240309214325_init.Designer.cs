@@ -12,8 +12,8 @@ using serever_good;
 namespace serever_good.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240306000157_Initial4")]
-    partial class Initial4
+    [Migration("20240309214325_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,10 @@ namespace serever_good.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

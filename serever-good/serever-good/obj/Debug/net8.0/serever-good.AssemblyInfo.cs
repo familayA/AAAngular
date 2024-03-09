@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("serever-good")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b25c001cf8246f835498be22388f9c0d80bead47")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+469608e2302563a8ef6536395870745e326f38c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("serever-good")]
 [assembly: System.Reflection.AssemblyTitleAttribute("serever-good")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

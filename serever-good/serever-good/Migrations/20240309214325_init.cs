@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace serever_good.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CatgoryList",
+                name: "CategoryList1",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace serever_good.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CatgoryList", x => x.Id);
+                    table.PrimaryKey("PK_CategoryList1", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,9 +57,9 @@ namespace serever_good.Migrations
                 {
                     table.PrimaryKey("PK_RecipeList", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RecipeList_CatgoryList_CatgoryId",
+                        name: "FK_RecipeList_CategoryList1_CatgoryId",
                         column: x => x.CatgoryId,
-                        principalTable: "CatgoryList",
+                        principalTable: "CategoryList1",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -77,6 +77,7 @@ namespace serever_good.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -141,7 +142,7 @@ namespace serever_good.Migrations
                 name: "RecipeList");
 
             migrationBuilder.DropTable(
-                name: "CatgoryList");
+                name: "CategoryList1");
 
             migrationBuilder.DropTable(
                 name: "UserList");

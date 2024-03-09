@@ -17,7 +17,7 @@ namespace serever_good
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Server = myServerAddress; Database = myDataBase; Trusted_Connection = True;
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=recipe;Trusted_Connection = True");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=recipe2;Trusted_Connection = True");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-SI8MC0H\\LOCALDB;Database=my_recipe");
             //optionsBuilder.UseSqlServer("data source=DESKTOP-SI8MC0H\\localdb;initial catalog=my_recipe;Integrated Security=true;MultipleActiveResultSets=True;App=EntityFramework;TrustServerCertificate=true;");
         }

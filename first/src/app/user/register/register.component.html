@@ -4,7 +4,7 @@
         <input type="text" formControlName="name">
         <ng-container *ngIf="this.RegisterForm.controls['name'].errors as nameError">
             <p *ngIf="nameError['required']">this field is must!</p>
-            <p *ngIf="nameError['minlength']">this field is must at least 9 digits</p>
+            <p *ngIf="nameError['minlength']">this field is must at least 3 digits</p>
         </ng-container>
     </div>
     <br>
@@ -13,7 +13,7 @@
         <input type="password" formControlName="password">
         <ng-container *ngIf="this.RegisterForm.controls['password'].errors as passwordError">
             <p *ngIf="passwordError['required']">this field is must!</p>
-            <p *ngIf="passwordError['minlength']">this field is must at least 3 digits</p>
+            <p *ngIf="passwordError['minlength']">this field is must at least 6 digits</p>
         </ng-container>
     </div>
     <br>
@@ -28,6 +28,9 @@
     <div>
         <label>address</label>
         <input type="text" formControlName="address">
+        <ng-container *ngIf="this.RegisterForm.controls['address'].errors as addressdError">
+            <p *ngIf="addressdError['minlength']">this field is must at least 3 digits</p>
+        </ng-container>
     </div>
     
   
