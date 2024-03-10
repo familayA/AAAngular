@@ -1,4 +1,8 @@
 <p>all-recipe works!</p>
-<div *ngFor="let recipe in allRecipe">
+<!-- <div *ngFor="let recipe in allRecipe">
+    <app-small-recipe [recipeChild]="recipe"></app-small-recipe>
+</div> -->
+<div *ngFor="let recipe of allRecipe">
+    <!-- {{recipe.name}} -->
     <app-small-recipe [recipeChild]="recipe"></app-small-recipe>
 </div>
