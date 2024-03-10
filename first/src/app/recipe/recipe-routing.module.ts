@@ -5,6 +5,7 @@ import { AddRecipeComponent } from './component/add-recipe/add-recipe.component'
 
 
 
+
 const RECIPE_ROUTES: Route[] = [
   { path: '', redirectTo: 'all-recipe', pathMatch: 'full' },
   { path: 'all-recipe', component: AllRecipeComponent },

@@ -30,11 +30,11 @@ namespace serever_good.Controllers
       
 
         [HttpPost]
-        public ActionResult Post([FromBody] User user)
+        public ActionResult<User> Post([FromBody] User user)
         {
             _dataContext.UserList.Add(user);
             _dataContext.SaveChanges();
-            return Ok();
+            return Ok(user);
         }
 
         // PUT api/<RecipeController>/5

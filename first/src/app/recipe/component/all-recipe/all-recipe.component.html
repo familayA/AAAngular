@@ -2,7 +2,9 @@
 <!-- <div *ngFor="let recipe in allRecipe">
     <app-small-recipe [recipeChild]="recipe"></app-small-recipe>
 </div> -->
-<div *ngFor="let recipe of allRecipe">
+<div *ngFor="let recipe of allRecipe" id="flex">
+    <div class="a1">
     <!-- {{recipe.name}} -->
-    <app-small-recipe [recipeChild]="recipe"></app-small-recipe>
+    <app-small-recipe [recipeChild]="recipe" ></app-small-recipe>
+</div>
 </div>

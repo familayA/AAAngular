@@ -1,2 +1,79 @@
-<p>small-recipe works!</p>
-{{recipeChild?.name}}
+<!-- {{recipeChild?.name}} -->
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{recipeChild?.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ recipeChild?.imgRouting }}" alt="Photo of {{ recipeChild?.name }}">
+
+    <mat-card-content>
+
+      <h3>Duration of preparation: {{recipeChild?.minutes}}</h3>
+      <h3>Difficulty Level: {{recipeChild?.difficultyLevel}}</h3>
+
+    </mat-card-content>
+
+  </mat-card>
+  <!-- <Card sx={{ maxWidth: 345 }}>
+    <CardActionArea>
+      <CardMedia
+        component="img"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lizard
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card> -->
+  <!-- <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div> -->
+
+  <!-- <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+    </ng-template>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+        quas!
+    </p>
+    <ng-template pTemplate="footer">
+       
+    </ng-template>
+</p-card> -->
+<!-- <mat-card class="small-recipe-card">
+    <mat-card-header>
+      <mat-card-title>{{ recipe.name }}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon>timer</mat-icon> {{ recipe.minutes }} דקות
+        <mat-icon>filter_none</mat-icon> {{ recipe.difficulty }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ recipe.imgRouting }}" alt="{{ recipe.name }}">
+    <mat-card-content>
+      <p>{{ recipe.description }}</p>
+    </mat-card-content>
+  </mat-card>
+   -->

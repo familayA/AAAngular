@@ -1,1 +1,83 @@
-<p>add-recipe works!</p>
+<!-- <form [formGroup]="this.recipeForm" (ngSubmit)="onSubmit()">
+
+    <label for="name">Recipe Name:</label>
+    <input type="text" id="name" formControlName="name">
+  
+    <label for="description">Recipe Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
+  
+    <label for="image">Image:</label>
+    <input type="file" id="image" formControlName="image">
+  
+    <h3>Ingredients</h3>
+    <div formArrayName="ingredients">
+      <div *ngFor="let ingredient of recipeForm.value.ingredients.controls; let i = index">
+        <input type="text" >
+        <button type="button" (click)="this.removeIngredient(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addIngredient()">Add Ingredient</button>
+  
+    <h3>Instructions</h3>
+    <div formArrayName="instructions">
+      <div *ngFor="let instruction of recipeForm.value.instructions; let i = index">
+        <textarea ></textarea>
+        
+   -->
+   <form [formGroup]="this.recipeForm" (ngSubmit)="onSubmit()">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+  
+          <div class="form-group">
+            <label for="name">שם המתכון:</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+          </div>
+  
+          <div class="form-group">
+            <label for="description">תיאור המתכון:</label>
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+          </div>
+  
+          <div class="form-group">
+            <label for="category">קטגוריה:</label>
+            <select id="category" formControlName="category" class="form-select">
+              <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="image">תמונה:</label>
+            <input type="file" id="image" formControlName="image" class="form-control">
+          </div>
+  
+          <h3>מרכיבים</h3>
+          <div formArrayName="ingredients">
+            <div *ngFor="let ingredient of recipeForm.value.ingredients.controls; let i = index" class="ingredient-item">
+              <input type="text" class="form-control" [(ngModel)]="ingredient.value">
+              <button type="button" class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="addIngredient()">הוסף מרכיב</button>
+  
+          <h3>הוראות</h3>
+          <div formArrayName="instructions">
+            <div *ngFor="let instruction of recipeForm.value.instructions; let i = index" class="instruction-item">
+              <textarea class="form-control" [(ngModel)]="instruction.value"></textarea>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-primary">שמור</button>
+  
+        </div>
+      </div>
+    </div>
+  
+  </form>
+  

@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public LoginForm!: FormGroup;
   public user!: User
+  private timerInterval: any;
+  private timer: any;
   constructor(private _userService: UserService, private router: Router) { }
   ngOnInit(): void {
     var isGet = sessionStorage.getItem('isGetFromRgister')
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
         if (this.user != null) {
           this.checkPassword()
           console.log("inside check");
+          
 
         }
         else {
@@ -70,6 +73,28 @@ export class LoginComponent implements OnInit {
   checkPassword() {
     if (this.user.password == this.LoginForm.value.password) {
       console.log("go to recipy");
+      Swal.fire({
+        title: 'you login!!!!',
+        html: 'Transferred to show the recipes',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading(null);
+          this.timer = Swal
+          this.timerInterval = setInterval(() => {
+            this.timer.textContent = `${Swal.getTimerLeft()}`;
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(this.timerInterval);
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer');
+        }
+      });
+      this.router.navigate(["recipe"])
+
     }
     else {
       console.log("errory");
