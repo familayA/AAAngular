@@ -131,5 +131,48 @@ export class AddRecipeComponent implements OnInit {
 
     
   }
+  // recipeName: string = '';
+  // ingredients: string[] = [''];
+  // instructions: string[] = [''];
+  // category: string = '';
+
+  // constructor(private router: Router) {}
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  // addIngredient(): void {
+  //   this.ingredients.push('');
+  // }
+
+  // removeIngredient(index: number): void {
+  //   this.ingredients.splice(index, 1);
+  // }
+
+  // addInstruction(): void {
+  //   this.instructions.push('');
+  // }
+
+  // removeInstruction(index: number): void {
+  //   this.instructions.splice(index, 1);
+  // }
+
+  // saveRecipe(): void {
+  //   // Perform save logic here
+
+  //   // Display Sweet Alert
+  //   // Assuming you have added SweetAlert2 library
+    
+
+  //   Swal.fire({
+  //     icon: 'success',
+  //     title: 'Recipe Added!',
+  //     text: 'The recipe has been successfully added.',
+  //     confirmButtonText: 'OK'
+  //   }).then(() => {
+  //     // Navigate to all recipe selection page
+  //     this.router.navigate(['/all-recipes']);
+  //   });
+  // }
 
 }

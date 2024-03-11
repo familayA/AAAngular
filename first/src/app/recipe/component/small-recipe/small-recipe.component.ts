@@ -16,10 +16,11 @@ import { Router } from '@angular/router';
 })
 export class SmallRecipeComponent {
   constructor(private router:Router){}
-  @Input() recipeChild: Recipe | undefined
+  @Input() recipeChild!: Recipe
   recipeDetails(){
-    this.router.navigate(["recipe/recipe-details"])
-
+    console.log("before move")
+    this.router.navigate(["recipe/recipe-details",this.recipeChild?.id])
+    console.log("after move")
   }
 
 }

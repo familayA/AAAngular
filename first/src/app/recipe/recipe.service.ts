@@ -28,4 +28,7 @@ export class RecipeService {
   //   // this.productsList.push(product)
   //   return this.http.post<User>(this.baseUrl, user)
   // }
+  getRecipeById(id:number): Observable<Recipe> {
+    return this.http.get<Recipe>(`${this.baseUrlRecipe}/${id}`)
+  }
 }

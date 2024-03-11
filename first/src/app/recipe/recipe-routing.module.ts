@@ -11,7 +11,7 @@ const RECIPE_ROUTES: Route[] = [
   { path: '', redirectTo: 'all-recipe', pathMatch: 'full' },
   { path: 'all-recipe', component: AllRecipeComponent },
   { path: 'add-recipe', component:AddRecipeComponent },
-  {path:'recipe-details',component:RecipeDetailsComponent}
+  {path:'recipe-details/:id',component:RecipeDetailsComponent}
   ///////להמשיך
 ]
 

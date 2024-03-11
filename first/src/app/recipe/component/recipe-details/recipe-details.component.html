@@ -1,35 +1,36 @@
-<div class="card mb-3"  id="recipe-details">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img
-          src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp"
-          alt={{recipeDetails?.name}}
-          class="img-fluid rounded-start"
-        />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{recipeDetails?.name}}</h5>
-          <div class="col-md-4" >
-            {{recipeDetails?.category?.name}}
-            <img
-              src={{recipeDetails?.category?.icon}}
-              alt={{recipeDetails?.category?.name}}
-              class="img-fluid rounded-start"
-            />
+<div class="card mb-3" id="recipe-details">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp" alt={{recipeDetails?.name}}
+        class="img-fluid rounded-start" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{recipeDetails?.name}}</h5>
+        <div class="col-md-4">
+          <div *ngIf="recipeDetails.category!=null">{{recipeDetails?.category?.name}}
+            <img src={{recipeDetails?.category?.icon}} alt={{recipeDetails?.category?.name}}
+              class="img-fluid rounded-start" />
           </div>
-          <div *ngFor="let item in recipeDetails.difficultyLevel">*</div>
-          <div *ngFor="let item in recipeDetails.componentsList">
-            <img src={{item.icon}}/>
         </div>
+        <ng-container *ngIf="recipeDetails.componentsList!=null">
+        <div *ngFor="let item in recipeDetails.difficultyLevel">*</div>
+        </ng-container>
+        <ng-container *ngIf="recipeDetails.componentsList!=null">
+        <div  *ngFor="let item in recipeDetails.componentsList">
+          <div *ngIf="item!=null">
+            <img src={{item.icon}} />
+          </div>
+        </div>
+      </ng-container>
         <div *ngFor="let item in recipeDetails.preparationList">
-            <!-- number -->
-            {{item}}
+          <!-- number -->
+          {{item}}
         </div>
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-        </div>
+        <p class="card-text">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </p>
       </div>
     </div>
   </div>
+</div>
