@@ -39,9 +39,9 @@ namespace serever_good.Controllers
 
         // PUT api/<RecipeController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] User user)
+        public ActionResult Put(string name, [FromBody] User user)
         {
-            int x = _dataContext.UserList.ToList().FindIndex(x => x.Id == id);
+            int x = _dataContext.UserList.ToList().FindIndex(x => x.Name == name);
             _dataContext.UserList.ToList()[x] = user;
             _dataContext.SaveChanges();
             return Ok();
@@ -49,11 +49,12 @@ namespace serever_good.Controllers
 
         // DELETE api/<RecipeController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult<User> Delete(string id)
         {
-            _dataContext.UserList.Remove(_dataContext.UserList.ToList().Find(x => x.Id == id));
+            User user = _dataContext.UserList.ToList().Find(x => x.Name == id);
+            _dataContext.UserList.Remove(user);
             _dataContext.SaveChanges();
-            return Ok();
+            return Ok(user);
         }
     }
 }

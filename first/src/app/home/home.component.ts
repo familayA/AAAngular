@@ -26,5 +26,8 @@ export class HomeComponent {
   logOut(){
     this.router.navigate(["user/log-out"])
   }
+  toHome(){
+    this.router.navigate(["home"])
+  }
 
 }

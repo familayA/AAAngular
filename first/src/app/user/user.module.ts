@@ -10,12 +10,14 @@ import { UserRoutingModule } from './user-routing.module';
 // import 'sweetalert2/src/sweetalert2.scss'
 
 // import { HttpModule } from '@angular/http';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms'
+import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
-  declarations: [LoginComponent,RegisterComponent],
+  declarations: [LoginComponent,RegisterComponent,LogOutComponent],
   imports: [
-    CommonModule, ReactiveFormsModule,HttpClientModule,UserRoutingModule
+    CommonModule, ReactiveFormsModule,HttpClientModule,UserRoutingModule,MdbFormsModule
   ],
-  exports:[LoginComponent,RegisterComponent]
+  exports:[LoginComponent,RegisterComponent,LogOutComponent]
 })
 export class UserModule { }

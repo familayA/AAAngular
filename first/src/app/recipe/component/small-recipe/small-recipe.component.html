@@ -1,6 +1,6 @@
 <!-- {{recipeChild?.name}} -->
 
-<mat-card class="example-card">
+<!-- <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{recipeChild?.name}}</mat-card-title>
@@ -15,65 +15,35 @@
     </mat-card-content>
 
   </mat-card>
-  <!-- <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-  </Card> -->
-  <!-- <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+  -->
+  <div class="card" style="width: 18rem;" >
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp" class="card-img-top" alt="Sunset Over the Sea"/>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h2 class="card-title">{{recipeChild?.name}}</h2>
+      <p class="card-text">Duration of preparation: {{recipeChild?.minutes}}</p>
+      <p class="card-text">Difficulty Level: {{recipeChild?.difficultyLevel}}</p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">An item</li>
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+  </div>
+  <!-- <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp"
+          alt="Trendy Pants and Shoes"
+          class="img-fluid rounded-start"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to
+            additional content. This content is a little bit longer.
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
     </div>
   </div> -->
-
-  <!-- <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
-    <ng-template pTemplate="header">
-        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-    </ng-template>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-        quas!
-    </p>
-    <ng-template pTemplate="footer">
-       
-    </ng-template>
-</p-card> -->
-<!-- <mat-card class="small-recipe-card">
-    <mat-card-header>
-      <mat-card-title>{{ recipe.name }}</mat-card-title>
-      <mat-card-subtitle>
-        <mat-icon>timer</mat-icon> {{ recipe.minutes }} דקות
-        <mat-icon>filter_none</mat-icon> {{ recipe.difficulty }}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{ recipe.imgRouting }}" alt="{{ recipe.name }}">
-    <mat-card-content>
-      <p>{{ recipe.description }}</p>
-    </mat-card-content>
-  </mat-card>
-   -->

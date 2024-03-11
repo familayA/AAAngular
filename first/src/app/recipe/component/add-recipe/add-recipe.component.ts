@@ -20,10 +20,11 @@ export class AddRecipeComponent implements OnInit {
   public recipe!:Recipe
   // Available categories
   public categories!: Category[] 
-
+  public inputs: string[] = [];
   constructor(private recipeService: RecipeService,private router: Router) { }
 
   ngOnInit(): void {
+    this.addInput(); 
     this.recipeService.getAllCategory().subscribe({
       next: (res: any) => {
         this.categories=res;
@@ -53,6 +54,23 @@ export class AddRecipeComponent implements OnInit {
       ingredients: new FormArray([]),
       instructions: new FormArray([])
     });
+  }
+  addInput() {
+    this.inputs.push(''); // הוספת מחרוזת ריקה למערך
+  }
+
+  removeInput(index: number) {
+    if (this.inputs.length > 1) { // מניעת מחיקת תיבת הקלט האחרונה
+      this.inputs.splice(index, 1); // הסרת תיבת קלט מהמערך
+    }
+  }
+
+  save() {
+    // שמירה - קוד ספציפי לאפליקציה שלך
+    // ...
+
+    // מחיקת תיבות קלט ריקות
+    this.inputs = this.inputs.filter(input => input.length > 0);
   }
 
   // Function to add new ingredient field

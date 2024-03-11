@@ -17,5 +17,9 @@ export class UserService {
     // this.productsList.push(product)
     return this.http.post<User>(this.baseUrl, user)
   }
+  deleteUser(name: string):Observable<User> {
+    // this.productsList.push(product)
+    return this.http.delete<User>(`${this.baseUrl}/${name}`)
+  }
 
 }

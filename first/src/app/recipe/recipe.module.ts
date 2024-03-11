@@ -16,6 +16,7 @@ import { FormGroup, FormsModule, NgControl, ReactiveFormsModule } from '@angular
 import { AlertModule } from '@coreui/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms'
 
 
 
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     // BrowserAnimationsModule
     // AlertModule
+    ,MdbFormsModule
 
 
   ],

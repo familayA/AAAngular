@@ -59,10 +59,10 @@ export class LoginComponent implements OnInit {
           });
           sessionStorage.setItem('name', this.LoginForm.value.name);
           sessionStorage.setItem('isGetFromLogin', 'true')
-          this.router.navigate(["user/register"])
+          // this.router.navigate(["user/register"])
+          this.toRegister()
 
         }
-        //אחרת שלח לרג'סטר
       },
       error: (err) => {
         console.log(err);
@@ -106,6 +106,10 @@ export class LoginComponent implements OnInit {
         // footer: '<a href="#">Why do I have this issue?</a>'
       });
     }
+  }
+  toRegister(){
+    this.router.navigate(["user/register"])
+
   }
 
 }

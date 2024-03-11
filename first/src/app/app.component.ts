@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { UserModule } from './user/user.module';
 //
 
@@ -14,4 +14,5 @@ import { UserModule } from './user/user.module';
 })
 export class AppComponent {
   title = 'first';
+
 }
