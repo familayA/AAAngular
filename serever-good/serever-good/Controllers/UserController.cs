@@ -51,7 +51,7 @@ namespace serever_good.Controllers
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(string id)
         {
-            User user = _dataContext.UserList.ToList().Find(x => x.Name == id);
+            User user = _dataContext.UserList.ToList().FindAll(x => x.Name == id).First();
             _dataContext.UserList.Remove(user);
             _dataContext.SaveChanges();
             return Ok(user);

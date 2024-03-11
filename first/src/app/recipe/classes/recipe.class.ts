@@ -9,9 +9,9 @@ export class Recipe{
     name!:string
     category!:Category
     minutes!:number
-    difficultyLevel!:string
-    componentsList!: Array<Component1>
-    preparationList!:Array<string>
+    difficultyLevel!:number
+    componentsList!: Component1[]
+    preparationList!:string[]
     user!:User
     imgRouting!:string
 }

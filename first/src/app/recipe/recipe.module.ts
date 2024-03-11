@@ -17,12 +17,13 @@ import { AlertModule } from '@coreui/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms'
+import { RecipeDetailsComponent } from './component/recipe-details/recipe-details.component';
 
 
 
 
 @NgModule({
-  declarations: [AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,AllRecipeComponent],
+  declarations: [AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,AllRecipeComponent, RecipeDetailsComponent],
   imports: [
     CommonModule,HttpClientModule
     ,RecipeRoutingModule,
@@ -40,6 +41,6 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms'
 
 
   ],
-  exports:[AllRecipeComponent,AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent]
+  exports:[AllRecipeComponent,AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,RecipeDetailsComponent]
 })
 export class RecipeModule { }
