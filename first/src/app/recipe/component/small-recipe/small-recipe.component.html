@@ -17,7 +17,8 @@
   </mat-card>
   -->
   <div class="card" style="width: 18rem;" (click)="recipeDetails()">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp" class="card-img-top" alt="Sunset Over the Sea"/>
+    <img src="{{ recipeChild.imgRouting }}" alt="{{ recipeDetails?.name }}" onerror="this.src='https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp'" class="card-img-top">
+    <!-- <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp" class="card-img-top" alt="Sunset Over the Sea"/> -->
     <div class="card-body">
       <h2 class="card-title">{{recipeChild?.name}}</h2>
       <p class="card-text">Duration of preparation: {{recipeChild?.minutes}}</p>

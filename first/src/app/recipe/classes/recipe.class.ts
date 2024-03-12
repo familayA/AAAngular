@@ -1,4 +1,3 @@
-
 import { User } from "../../user/user.class"
 import { Category } from "./category.class"
 import { Component1 } from "./component.class"

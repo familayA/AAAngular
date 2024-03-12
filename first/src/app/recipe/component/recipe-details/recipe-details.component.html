@@ -1,36 +1,71 @@
 <div class="card mb-3" id="recipe-details">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp" alt={{recipeDetails?.name}}
-        class="img-fluid rounded-start" />
+      <!-- <img src="https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp" alt={{recipeDetails?.name}}
+        class="img-fluid rounded-start" /> -->
+        <!-- <img src="{{ recipeDetails.imgRouting }}" alt={{recipeDetails?.name}}
+        class="img-fluid rounded-start" /> -->
+        <img src="{{ recipeDetails.imgRouting }}" alt="{{ recipeDetails?.name }}" onerror="this.src='https://mdbcdn.b-cdn.net/wp-content/uploads/2020/06/vertical.webp'" 
+        class="img-fluid rounded-start" id="imgRouting">
+
     </div>
-    <div class="col-md-8">
+    <!-- <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{recipeDetails?.name}}</h5>
-        <div class="col-md-4">
-          <div *ngIf="recipeDetails.category!=null">{{recipeDetails?.category?.name}}
+        <div class="col-md-4" *ngIf="recipeDetails?.category">
+            {{recipeDetails?.category?.name}}
             <img src={{recipeDetails?.category?.icon}} alt={{recipeDetails?.category?.name}}
               class="img-fluid rounded-start" />
-          </div>
         </div>
-        <ng-container *ngIf="recipeDetails.componentsList!=null">
-        <div *ngFor="let item in recipeDetails.difficultyLevel">*</div>
+        <ng-container *ngIf="recipeDetails?.difficultyLevel">
+          <div *ngFor="let item in recipeDetails.difficultyLevel">*</div>
         </ng-container>
-        <ng-container *ngIf="recipeDetails.componentsList!=null">
-        <div  *ngFor="let item in recipeDetails.componentsList">
-          <div *ngIf="item!=null">
-            <img src={{item.icon}} />
+        <ng-container *ngIf="recipeDetails?.componentsList!=null">
+          <div *ngFor="let item in recipeDetails.componentsList">
+            <div *ngIf="item!=null">
+              <img src={{item.icon}} />
+            </div>
           </div>
-        </div>
-      </ng-container>
-        <div *ngFor="let item in recipeDetails.preparationList">
-          <!-- number -->
+        </ng-container>
+        <div *ngFor="let item in recipeDetails?.preparationList">
           {{item}}
         </div>
         <p class="card-text">
           <small class="text-muted">Last updated 3 mins ago</small>
         </p>
       </div>
+    </div> -->
+
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1 class="card-title">{{ recipeDetails?.name }}</h1>
+    
+        <div class="col-md-4" *ngIf="recipeDetails?.category">
+          <p>{{ recipeDetails.category.name }}</p>
+          <img src="{{ recipeDetails.category.icon }}" alt="{{ recipeDetails.category.name }}" class="img-fluid rounded-start" />
+        </div>
+    
+        <ng-container *ngIf="recipeDetails?.difficultyLevel">
+          <div class="difficulty-stars">
+            <span *ngFor="let star of this.getDifficultyStars(recipeDetails.difficultyLevel)">*</span>
+          </div>
+        </ng-container>
+    
+        <ng-container *ngIf="recipeDetails?.componentsList">
+          <div *ngFor="let item of recipeDetails.componentsList">
+            <img *ngIf="item" src="{{ item.icon }}" alt="{{ item.name }}" class="component-icon" />
+          </div>
+        </ng-container>
+    
+        <div *ngFor="let item of recipeDetails?.preparationList">
+          <p class="preparation-step">{{ item }}</p>
+        </div>
+    
+        <p class="card-text">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </p>
+      </div>
     </div>
+    
   </div>
 </div>
