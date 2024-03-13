@@ -1,178 +1,177 @@
+
+
+
+
+//sari---
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecipeService } from '../../recipe.service';
-import { Router } from '@angular/router';
-import { Recipe } from '../../classes/recipe.class';
 import Swal from 'sweetalert2';
-import { Category } from '../../classes/category.class';
+import { Category } from '../../../classes/category.class';
+import { CategoryService } from '../../../category.service';
+import { Recipe } from '../../../classes/recipe.class';
+import { User } from '../../../classes/user.class';
+import { UserService } from '../../../user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
-  // standalone: true,
-  // imports: [],
   templateUrl: './add-recipe.component.html',
-  styleUrl: './add-recipe.component.scss'
+  styleUrls: ['./add-recipe.component.scss']
 })
 export class AddRecipeComponent implements OnInit {
 
-  // FormGroup for recipe data
-  public recipeForm!: FormGroup;
-  public recipe!:Recipe
-  // Available categories
-  public categories!: Category[] 
-  public inputs: string[] = [];
-  constructor(private recipeService: RecipeService,private router: Router) { }
+  recipeForm: FormGroup | any;
+  categories: Category[] = [];
+  categoryId: any;
+  recipe: Recipe = new Recipe();
+  userName: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private _categoryService: CategoryService,
+    private _recipeService: RecipeService,
+    private _userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.addInput(); 
-    this.recipeService.getAllCategory().subscribe({
-      next: (res: any) => {
-        this.categories=res;
-        // console.log(res);
-        // console.log(this.recipe,"succes")
-        // Swal.fire({
-        //   title: "The Internet?",
-        //   text: "That thing is still around?",
-        //   icon: "success"
-        // });
-        // // this.sweetAlertService.success('Recipe added successfully!');
-        // // Navigate to All Recipes page
-        // this.router.navigate(['/all-recipes']);
-        
+    this.checkUserLogin();
+    this.getCategories();
+    this.initForm();
+  }
 
-        },
-      error: (err) => {
-        console.log(err);
-
-      }
-    })
-    this.recipeForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
-      image: new FormControl(null),
-      ingredients: new FormArray([]),
-      instructions: new FormArray([])
+  initForm(): void {
+    this.recipeForm = this.fb.group({
+      name: ['', Validators.required],
+      minutes: ['', Validators.required],
+      difficultyLevel: ['', Validators.required],
+      dateAdded: ['', Validators.required],
+      category: [''],
+      ingredients: this.fb.array([]),
+      instructions: this.fb.array([]),
+      imgRouting: ['']
     });
   }
-  addInput() {
-    this.inputs.push(''); // הוספת מחרוזת ריקה למערך
+
+  get ingredients(): FormArray {
+    return this.recipeForm.get('ingredients') as FormArray;
   }
 
-  removeInput(index: number) {
-    if (this.inputs.length > 1) { // מניעת מחיקת תיבת הקלט האחרונה
-      this.inputs.splice(index, 1); // הסרת תיבת קלט מהמערך
-    }
+  // get ingredients(): FormArray {
+  //   return this.recipeForm.get('ingredients') as FormArray;
+  // }
+
+  addIngredient(): void {
+    this.ingredients.push(this.fb.control(''));
+    console.log(this.ingredients)
+  } addInstruction(): void {
+    this.instructions.push(this.fb.control(''));
+    console.log(this.instructions)
   }
 
-  save() {
-    // שמירה - קוד ספציפי לאפליקציה שלך
-    // ...
 
-    // מחיקת תיבות קלט ריקות
-    this.inputs = this.inputs.filter(input => input.length > 0);
+  removeInstructions(index: number): void {
+    this.instructions.removeAt(index);
+  }
+  removeIngredient(index: number): void {
+    this.ingredients.removeAt(index);
+  }
+  get instructions(): FormArray {
+    return this.recipeForm.get('instructions') as FormArray;
   }
 
-  // Function to add new ingredient field
-  addIngredient() {
-    // const ingredients = this.recipeForm.get('ingredients') as FormArray;
-    const ingredients = this.recipeForm?.value.ingredients as FormArray
-    ingredients.push(new FormControl(''));
-  }
 
-  // Function to add new instruction field
-  addInstruction() {
-    const instructions = this.recipeForm?.value.instructions as FormArray;
-    instructions.push(new FormControl(''));
-  }
-  removeIngredient(index: number) {
-    const ingredients = this.recipeForm.get('ingredients') as FormArray;
-    ingredients.removeAt(index);
-  }
-  
-  // Function to save the recipe
-  onSubmit() {
-    if (this.recipeForm?.invalid) {
-      return;
-    }
+  onSubmit(): void {
 
 
-    // this.recipe.name=this.recipeForm?.value.name
-    // this.recipe.category=this.recipeForm?.value.category
-    // this.recipe.minutes=this.recipeForm?.value.minutes
-    // this.recipe.difficultyLevel=this.recipeForm?.value.difficultyLevel
-    // this.recipe.componentsList=this.recipeForm?.value.componentsList
-    // this.recipe.preparationList=this.recipeForm?.value.preparationList
-    // this.recipe.user=this.recipeForm?.value.user
-    // this.recipe.imgRouting=this.recipeForm?.value.imgRouting
+    this.categoryId = this.recipeForm.value.category
+    console.log("-----categoryid--------", this.categoryId)
+    // this.categoryService.getCategoryById(this.categoryId).subscribe({
+    //   next: (res) => {
+    //     this.recipe.category = res;
+    //     console.log("this.recipe.category", this.recipe.category)
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   }
+    // });
+    // this.recipe.category=this.categoryId
+    this.userName = sessionStorage.getItem("currentUserName")?.toString()
+    console.log("userName-------------------", this.userName)
+    // this._userService.getUserByName(this.userName?.toString()).subscribe({
+    //   next: (res) => {
+    //     this.recipe.user = res;
+    //     console.log("this.recipe.user", this.recipe.user)
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   }
+    // });
+    this.recipe.user = this.userName
+    this.recipe.category = this.recipeForm.value.category
+    this.recipe.name = this.recipeForm.value.name
+    this.recipe.minutes = this.recipeForm.value.minutes
+    // this.recipe.category = this.recipeForm.value.category
+    this.recipe.ingredients = this.recipeForm.value.ingredients
+    this.recipe.difficultyLevel = this.recipeForm.value.difficultyLevel
+    this.recipe.imgRouting = this.recipeForm.value.imgRouting
+    this.recipe.instructions = this.recipeForm.value.instructions
+    this.recipe.dateAdd=new Date()
+    console.log("--------------------recipe--------------------", this.recipe)
 
-
-    this.recipeService.addRecipe(this.recipeForm?.value).subscribe({
-      next: (res: any) => {
-        this.recipe=res;
-        // console.log(res);
-        console.log(this.recipe,"succes")
+    this._recipeService.addRecipe(this.recipe).subscribe({
+      next:(res)=>{
+        console.log(res)
         Swal.fire({
-          title: "The Internet?",
-          text: "That thing is still around?",
+          title: "Browo!!!!",
+          text: "your new recipe saved!!!!",
           icon: "success"
         });
-        // this.sweetAlertService.success('Recipe added successfully!');
-        // Navigate to All Recipes page
-        this.router.navigate(['/all-recipes']);
-        
+        this.router.navigate(["home/"])
 
-        },
-      error: (err) => {
-        console.log(err);
-
+      },
+      error:(err)=>{
+        console.log(err)
       }
     })
-
-    
+   
   }
-  // recipeName: string = '';
-  // ingredients: string[] = [''];
-  // instructions: string[] = [''];
-  // category: string = '';
 
-  // constructor(private router: Router) {}
-  // ngOnInit(): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
-  // addIngredient(): void {
-  //   this.ingredients.push('');
-  // }
+  resetForm(): void {
+    // Reset form values
+    this.recipeForm.reset();
 
-  // removeIngredient(index: number): void {
-  //   this.ingredients.splice(index, 1);
-  // }
+    // Clear ingredient and instruction arrays
+    this.ingredients.clear();
+    this.instructions.clear();
+  }
+  private getCategories(): void {
+    this._categoryService.getAllCategory().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+  checkUserLogin() {
+    console.log("before move");
+    if (sessionStorage.getItem("currentUserName") === null) {
+      // שמור את נתוני הניווט לשימוש לאחר ההרשמה
+      // this.loginRedirectUrl = ;
+      Swal.fire({
+        title: "The system was not logged in!",
+        text: "Move to login!",
+        icon: "info"
+      }).then(() => {
+        this.router.navigate(["user/login"]);
+        sessionStorage.setItem("isPath", "true")
+        sessionStorage.setItem("add-recipe", `true`)
+      });
 
-  // addInstruction(): void {
-  //   this.instructions.push('');
-  // }
+    }
+    // this.router.navigate(["recipe/recipe-details", this.recipeChild?.id]);
 
-  // removeInstruction(index: number): void {
-  //   this.instructions.splice(index, 1);
-  // }
+    console.log("after move");
 
-  // saveRecipe(): void {
-  //   // Perform save logic here
 
-  //   // Display Sweet Alert
-  //   // Assuming you have added SweetAlert2 library
-    
-
-  //   Swal.fire({
-  //     icon: 'success',
-  //     title: 'Recipe Added!',
-  //     text: 'The recipe has been successfully added.',
-  //     confirmButtonText: 'OK'
-  //   }).then(() => {
-  //     // Navigate to all recipe selection page
-  //     this.router.navigate(['/all-recipes']);
-  //   });
-  // }
-
+  }
 }

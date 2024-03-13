@@ -18,8 +18,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms'
 import { RecipeDetailsComponent } from './component/recipe-details/recipe-details.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
+
+
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
+
+
+//import { MatDatetimePickerModule } from '@angular/material/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { Router } from '@angular/router';
 
 
 @NgModule({
@@ -37,9 +52,22 @@ import { RecipeDetailsComponent } from './component/recipe-details/recipe-detail
 
     // BrowserAnimationsModule
     // AlertModule
-    ,MdbFormsModule
-
-
+    ,MdbFormsModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   exports:[AllRecipeComponent,AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,RecipeDetailsComponent]
 })

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Recipe } from './classes/recipe.class';
-import { Category } from './classes/category.class';
+import { Recipe } from '../classes/recipe.class';
+import { Category } from '../classes/category.class';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,11 @@ export class RecipeService {
 
   }
 
-  public baseUrlRecipe='https://localhost:7196/api/Recipe'
-  public baseUrlCategory='https://localhost:7196/api/Catgory'
+  public baseUrlRecipe='https://localhost:7100/api/Recipe'
+  // public baseUrlRecipe='https://localhost:7196/api/Recipe'
   
   constructor(private http: HttpClient) { }
-  getAllCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrlCategory)
-  }
+
   getAllRecipe(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.baseUrlRecipe)
   }
@@ -30,5 +28,8 @@ export class RecipeService {
   // }
   getRecipeById(id:number): Observable<Recipe> {
     return this.http.get<Recipe>(`${this.baseUrlRecipe}/${id}`)
+  }
+  remove(id:number): Observable<Recipe> {
+    return this.http.delete<Recipe>(`${this.baseUrlRecipe}/${id}`)
   }
 }

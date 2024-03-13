@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../../classes/recipe.class';
+import { Recipe } from '../../../classes/recipe.class';
 import { RecipeService } from '../../recipe.service';
 import { SmallRecipeComponent } from '../small-recipe/small-recipe.component';
 

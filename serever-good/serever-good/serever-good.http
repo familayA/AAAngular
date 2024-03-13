@@ -1,6 +1,0 @@
-@serever_good_HostAddress = http://localhost:5223
-
-GET {{serever_good_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

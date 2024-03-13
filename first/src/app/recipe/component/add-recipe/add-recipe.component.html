@@ -1,102 +1,181 @@
-  <form [formGroup]="this.recipeForm" (ngSubmit)="onSubmit()">
-  
-    <mdb-form-control class="mb-4">
-      <input mdbInput type="text" id="form6Example3" class="form-control"  formControlName="name"/>
-      <label mdbLabel class="form-label" for="form6Example3">name</label>
-    </mdb-form-control>
-  
-    
-    <mdb-form-control class="mb-4" >
-      <textarea  mdbInput class="form-control" id="form6Example7" rows="2" formControlName="description"></textarea>
-      <label mdbLabel class="form-label" for="form6Example4">description</label>
-    </mdb-form-control>
-    <h5>Ingredients</h5>
-    <div formArrayName="ingredients">
-      <div *ngFor="let ingredient of recipeForm.value.ingredients.controls; let i = index" class="ingredient-item">
-        <input type="text" class="form-control" [(ngModel)]="ingredient.value">
-        <button type="button" class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
-      </div>
-    </div>
-    <button type="button" class="btn btn-primary" (click)="addIngredient()">הוסף מרכיב</button>
+<!-- <form [formGroup]="this.recipeForm">
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="text" id="form3Example1" class="form-control" formControlName="name" />
+    <label mdbLabel class="form-label" for="form3Example1">recipe name</label>
+  </mdb-form-control>
 
-    <h5>Instructions</h5>
-    <div formArrayName="instructions">
-      <div *ngFor="let instruction of recipeForm.value.instructions; let i = index" class="instruction-item">
-        <textarea class="form-control" [(ngModel)]="instruction.value"></textarea>
-      </div>
-    </div>
-        
-    <div class="form-group">
-      <label mdbLabel for="category" class="form-label">Category </label>
-      <select id="category" formControlName="category" class="form-select" mbSelect>
-        <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
-      </select>
+      
+  <div class="form-group">
+    <label mdbLabel for="category" class="form-label">Category </label>
+    <select id="category" formControlName="category" class="form-select" mbSelect>
+      <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+    </select>
 
-    </div>
-
-    <mdb-form-control class="mb-4">
-      <input mdbInput type="text" id="image" class="form-control" />
-      <label mdbLabel class="form-label" for="form6Example5">ImageUrl</label>
-    </mdb-form-control>
-  
-  
-    
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input
-        mdbCheckbox
-        class="form-check-input me-2"
-        type="checkbox"
-        value=""
-        id="form6Example8"
-        [checked]="true"
-      />
-      <label class="form-check-label" for="form6Example8"> do you want to save your name in this Recipe? </label>
-    </div>
-  
-   
-    <button mdbRipple type="button" class="btn btn-primary btn-block mb-4">
-      Save
-    </button>
-    
-    
-  </form>
-  <div class="container">
-    <h1>הוספת תיבות קלט דינמיות</h1>
-  
-    <div *ngFor="let input of inputs; let i = index">
-      <input type="text" [(ngModel)]="inputs[i]" (keyup)="removeInput(i)" />
-    </div>
-  
-    <button type="button" (click)="addInput()">הוסף תיבת קלט</button>
-    <button type="button" (click)="save()">שמור</button>
   </div>
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="number" id="form3Example3" class="form-control" formControlName="minutes" />
+    <label mdbLabel class="form-label" for="form3Example3">minutes</label>
+  </mdb-form-control>
+
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="number" id="form3Example3" class="form-control" formControlName="difficultyLevel" />
+    <label mdbLabel class="form-label" for="form3Example3">difficultyLevel</label>
+  </mdb-form-control>
+
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="text" id="form3Example3" class="form-control" formControlName="image" />
+    <label mdbLabel class="form-label" for="form3Example3">image-rout</label>
+  </mdb-form-control>
+
   
-   <!-- <div>
-    <h2>Add Recipe</h2>
+  <h5>componentsList</h5>
+  <div formArrayName="componentsList">
+    <div *ngFor="let component of recipeForm.value.componentsList; let i = index" class="instruction-item">
+      <textarea class="form-control" [(ngModel)]="component.value"></textarea>
+    </div>
+  </div>
+  <h5>Ingredients</h5>
+  <div formArrayName="preparationList">
+    <div *ngFor="let preparation of recipeForm.value.preparationList.controls; let i = index" class="ingredient-item">
+      <input type="text" class="form-control" [(ngModel)]="preparation.value">
+      <button type="button" class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="addIngredient()">הוסף מרכיב</button>
   
-    <form (ngSubmit)="saveRecipe()">
-      <label for="recipeName">Recipe Name:</label>
-      <input type="text" id="recipeName" [(ngModel)]="recipeName" required>
-  
-      <div *ngFor="let ingredient of ingredients; let i = index">
-        <label for="ingredient{{i}}">Ingredient {{i + 1}}:</label>
-        <input type="text" id="ingredient{{i}}" [(ngModel)]="ingredients[i]" required>
-        <button type="button" *ngIf="i === ingredients.length - 1" (click)="addIngredient()">+</button>
-        <button type="button" *ngIf="ingredients.length > 1" (click)="removeIngredient(i)">-</button>
-      </div>
-  
-      <div *ngFor="let instruction of instructions; let i = index">
-        <label for="instruction{{i}}">Instruction {{i + 1}}:</label>
-        <textarea id="instruction{{i}}" [(ngModel)]="instructions[i]" required></textarea>
-        <button type="button" *ngIf="i === instructions.length - 1" (click)="addInstruction()">+</button>
-        <button type="button" *ngIf="instructions.length > 1" (click)="removeInstruction(i)">-</button>
-      </div>
-  
-      <label for="category">Category:</label>
-      <select id="category" [(ngModel)]="category" required>
-      </select>
-  
-      <button type="submit">Save</button>
-    </form>
-  </div> -->
-  
+
+  <div class="form-check d-flex justify-content-center mb-4">
+    <input mdbCheckbox class="form-check-input me-2" type="checkbox" value="" id="form2Example32" [checked]="true" />
+    <label class="form-check-label" for="form2Example32">
+      Subscribe to our newsletter
+    </label>
+  </div>
+
+  <button mdbRipple type="button" class="btn btn-primary btn-block mb-4" (click)="save()">save</button>
+</form>
+ -->
+
+
+
+ <!-- gemini 22:56 -->
+ <!-- <form [formGroup]="recipeForm">
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="text" id="form3Example1" class="form-control" formControlName="name" />
+    <label mdbLabel class="form-label" for="form3Example1">recipe name</label>
+  </mdb-form-control>
+
+  <div class="form-group">
+    <label mdbLabel for="category" class="form-label">Category </label>
+    <select id="category" formControlName="category" class="form-select" mbSelect>
+      <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+    </select>
+  </div>
+
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="number" id="form3Example3" class="form-control" formControlName="minutes" />
+    <label mdbLabel class="form-label" for="form3Example3">minutes</label>
+  </mdb-form-control>
+
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="number" id="form3Example3" class="form-control" formControlName="difficultyLevel" />
+    <label mdbLabel class="form-label" for="form3Example3">difficultyLevel</label>
+  </mdb-form-control>
+
+  <mdb-form-control class="mb-4">
+    <input mdbInput type="text" id="form3Example3" class="form-control" formControlName="image" />
+    <label mdbLabel class="form-label" for="form3Example3">image-rout</label>
+  </mdb-form-control>
+
+  <h5>Ingredients</h5>
+  <div formArrayName="preparationList">
+    <div *ngFor="let preparation of recipeForm.get('preparationList').controls; let i = index" class="ingredient-item">
+      <input type="text" class="form-control" [(ngModel)]="preparation.value" (blur)="handleIngredientChange(i)">
+      <button type="button" class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
+    </div>
+    <div *ngIf="recipeForm.get('preparationList').value.length > 0 && recipeForm.get('preparationList').at(recipeForm.get('preparationList').length - 1).value !== ''">
+      <input type="text" class="form-control" [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+    </div>
+  </div>
+
+  <h5>Instructions</h5>
+  <div formArrayName="componentsList">
+    <div *ngFor="let component of recipeForm.get('componentsList').controls; let i = index" class="instruction-item">
+      <textarea class="form-control" [(ngModel)]="component.value" (blur)="handleInstructionChange(i)"></textarea>
+      <button type="button" class="btn btn-sm btn-danger" (click)="removeComponent(i)">הסר</button>
+    </div>
+    <div *ngIf="recipeForm.get('componentsList').value.length > 0 && recipeForm.get('componentsList').at(recipeForm.get('componentsList').length - 1).value !== ''">
+      <textarea class="form-control" [(ngModel)]="newInstruction" (keyup.enter)="addComponent()"></textarea>
+    </div>
+  </div>
+
+  <button mdbRipple type="button" class="btn btn-primary btn-block mb-4" (click)="save()">save</button>
+</form> -->
+
+<form [formGroup]="recipeForm" >
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="recipe Name" required>
+  </mat-form-field>
+<br/>
+  <mat-form-field>
+    <mat-select formControlName="category" placeholder="category" required>
+      <mat-option *ngFor="let category of categories" [value]="category.name">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <input
+      matInput
+      type="number"
+      placeholder="time in minutes"
+      required
+      formControlName="minutes"
+    >
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-select formControlName="difficultyLevel" placeholder="difficultyLevel" required>
+      <mat-option value="1">easy</mat-option>
+      <mat-option value="2">medium</mat-option>
+      <mat-option value="3">hard</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <button mat-raised-button color="primary" type="button" (click)="addIngredient()">add ingredient</button>
+
+  <div formArrayName="ingredients">
+    <div *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i = index">
+      <mat-form-field>
+        <input matInput [formControlName]="i" placeholder="ingredient" required>
+      </mat-form-field>
+        <button mat-icon-button (click)="removeIngredient(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+  </div>
+  <br/>
+
+  <button mat-raised-button color="primary" type="button" (click)="addInstruction()">add instruction</button>
+ <div formArrayName="instructions">
+    <div *ngFor="let instruction of recipeForm.get('instructions').controls; let i = index">
+      <mat-form-field>
+        <input matInput [formControlName]="i" placeholder="instruction" required>
+      </mat-form-field>
+        <button mat-icon-button (click)="removeInstructions(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+  </div>
+
+  <br/>
+
+
+  <mat-form-field>
+    <input matInput formControlName="imgRouting" placeholder="imagePath(Optional)" required="" >
+  </mat-form-field>
+  <br/>
+
+  <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">save</button>
+</form> 
+
