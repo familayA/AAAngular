@@ -54,15 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -74,8 +70,7 @@
               "RelativeToolTip": "server\\Classes\\ingredient.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T16:27:19.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T16:27:19.519Z"
             },
             {
               "$type": "Document",
@@ -87,8 +82,7 @@
               "RelativeToolTip": "server\\Controllers\\UserController.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAEwC0AAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T04:24:49.485Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T04:24:49.485Z"
             },
             {
               "$type": "Document",
@@ -148,8 +142,7 @@
               "RelativeToolTip": "server\\Controllers\\CategoryController.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAIwA8AAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T13:41:35.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-12T13:41:35.433Z"
             },
             {
               "$type": "Document",
@@ -165,6 +158,10 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Category.cs",
@@ -174,8 +171,7 @@
               "RelativeToolTip": "server\\Classes\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T13:41:35.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-12T13:41:35.223Z"
             },
             {
               "$type": "Document",
