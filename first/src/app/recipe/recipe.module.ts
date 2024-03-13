@@ -35,7 +35,7 @@ import { MatChipsModule } from '@angular/material/chips';
 //import { MatDatetimePickerModule } from '@angular/material/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
-
+import { FormatTimePipe } from '../format-time.pipe';
 
 @NgModule({
   declarations: [AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,AllRecipeComponent, RecipeDetailsComponent],
@@ -67,7 +67,7 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatChipsModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,FormatTimePipe
   ],
   exports:[AllRecipeComponent,AddRecipeComponent,EditRecipeComponent,SmallRecipeComponent,RecipeDetailsComponent]
 })

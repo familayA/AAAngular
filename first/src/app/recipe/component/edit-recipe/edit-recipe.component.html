@@ -1,57 +1,9 @@
-<!-- <form [formGroup]="this.recipeForm">
-    <mdb-form-control class="mb-4">
-      <input mdbInput type="text" id="form3Example1" class="form-control" formControlName="name" />
-      <label mdbLabel class="form-label" for="form3Example1">Full name</label>
-    </mdb-form-control>
-
-
-  
-    <select formControlName="category" placeholder="קטגוריה" required>
-      <option *ngFor="let category of categories" [value]="category.name">
-        {{ category.name }}
-    </select>
-
-    <mdb-form-control class="mb-4">
-      <input mdbInput type="text" id="form3Example3" class="form-control" formControlName="imgRouting" />
-      <label mdbLabel class="form-label" for="form3Example3">imgRouting</label>
-    </mdb-form-control>
-
-    <mdb-form-control class="mb-4">
-      <input mdbInput type="number" id="form3Example3" class="form-control" formControlName="minutes" />
-      <label mdbLabel class="form-label" for="form3Example3">minutes</label>
-    </mdb-form-control>
-  
-    <button mdbRipple type="button" class="btn btn-primary btn-block mb-4" (click)="save()">Sign up</button>
-  
-    <div class="text-center">
-      <p>or sign up with:</p>
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-  
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-google"></i>
-      </button>
-  
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-twitter"></i>
-      </button>
-  
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-github"></i>
-      </button>
-    </div>
-  </form> -->
-11111111111111111111111111111111111111111
-
-  <!-- <form [formGroup]="editRecipeForm" >
-    <mat-form-field>
-      <input matInput formControlName="name" placeholder="recipe Name" required>
-    </mat-form-field>
+<h1>{{recipeDetails.name}}</h1>
+<form [formGroup]="recipeForm" >
   <br/>
     <mat-form-field>
       <mat-select formControlName="category" placeholder="category" required>
-        <mat-option *ngFor="let category of editCategories" [value]="category.name">
+        <mat-option *ngFor="let category of categories" [value]="category.name">
           {{ category.name }}
         </mat-option>
       </mat-select>
@@ -78,7 +30,9 @@
     <button mat-raised-button color="primary" type="button" (click)="addIngredient()">add ingredient</button>
   
     <div formArrayName="ingredients">
-      <div *ngFor="let ingredient of editRecipeForm.get('ingredients').controls; let i = index">
+      <div *ngFor="let item of recipeDetails.ingredients "> {{this.addIngredient(item.icon)}}</div>
+
+      <div *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i = index">
         <mat-form-field>
           <input matInput [formControlName]="i" placeholder="ingredient" required>
         </mat-form-field>
@@ -91,7 +45,8 @@
   
     <button mat-raised-button color="primary" type="button" (click)="addInstruction()">add instruction</button>
    <div formArrayName="instructions">
-      <div *ngFor="let instruction of editRecipeForm.get('instructions').controls; let i = index">
+    <div *ngFor="let item of recipeDetails.instructions "> {{this.addInstruction(item)}}</div>
+      <div *ngFor="let instruction of recipeForm.get('instructions').controls; let i = index">
         <mat-form-field>
           <input matInput [formControlName]="i" placeholder="instruction" required>
         </mat-form-field>
@@ -110,7 +65,6 @@
     <br/>
   
     <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">save</button>
-  </form> 
-  
-   -->
+    <button mat-raised-button color="primary" type="reset" (click)="resetForm()">reset</button>
 
+  </form> 

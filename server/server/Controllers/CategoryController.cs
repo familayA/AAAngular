@@ -12,12 +12,12 @@ namespace server.Controllers
     public class CategoryController : ControllerBase
     {
         private static List<Category> categories = new List<Category> {
-         new Category("Baking", "../../../../assets/category/baking.png"), 
-         new Category("Bread", "../../../../assets/category/bread.png"), 
-         new Category("Dessert", "../../../../assets/category/desserts.png"),
-         new Category("Dinner", "../../../../assets/category/dinner.png"), 
-         new Category("Easy", "../../../../assets/category/easy.png"), 
-         new Category("Medium", "../../../../assets/category/medium.png"), 
+         new Category("Baking", "../../../../assets/category/baking.jpg"), 
+         //new Category("Bread", "../../../../assets/category/bread.jpg"), 
+         new Category("Dessert", "../../../../assets/category/desserts.jpg"),
+         new Category("Dinner", "../../../../assets/category/dinner.jpg"), 
+         new Category("Easy", "../../../../assets/category/easy.jpg"), 
+         new Category("Medium", "../../../../assets/category/medium.jpg"), 
 
         };
 

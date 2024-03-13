@@ -35,32 +35,32 @@ namespace server.Controllers
   user: "batya", // Replace with actual user ID
   imgRouting: "../../../../assets/oatmeal_raisin_cookies2.jpg"
 ),
-                new Recipe(
-  "Cheese Pizza",
-  "Baking", // Dinner category ID
-  60,
-  2, // Medium difficulty level
-  DateTime.Now,
-  new List<string>() {
-    "1 package (1 pound) active dry yeast",
-    "1 teaspoon sugar",
-    "1 1/2 cups warm water",
-    "3 1/2 cups all-purpose flour",
-    "2 tablespoons olive oil",
-    "1 teaspoon salt",
-    "1 (28-ounce) can crushed tomatoes",
-    "1 teaspoon dried oregano",
-    "1/2 teaspoon garlic powder",
-    "1 cup shredded mozzarella cheese",
-    "1/2 cup shredded cheddar cheese"
-  },
-  new List<string>() {
-    "In a large bowl, combine yeast, sugar, and warm water. Let sit for 5 minutes until foamy.",
-    "... (remaining instructions)"
-  },
-  user: "chani", // Replace with actual user ID
-  imgRouting: "../../../../assets/cheese_pizza.jpg"
-),
+//                new Recipe(
+//  "Cheese Pizza",
+//  "Bread", // Dinner category ID
+//  60,
+//  2, // Medium difficulty level
+//  DateTime.Now,
+//  new List<string>() {
+//    "1 package (1 pound) active dry yeast",
+//    "1 teaspoon sugar",
+//    "1 1/2 cups warm water",
+//    "3 1/2 cups all-purpose flour",
+//    "2 tablespoons olive oil",
+//    "1 teaspoon salt",
+//    "1 (28-ounce) can crushed tomatoes",
+//    "1 teaspoon dried oregano",
+//    "1/2 teaspoon garlic powder",
+//    "1 cup shredded mozzarella cheese",
+//    "1/2 cup shredded cheddar cheese"
+//  },
+//  new List<string>() {
+//    "In a large bowl, combine yeast, sugar, and warm water. Let sit for 5 minutes until foamy.",
+//    "... (remaining instructions)"
+//  },
+//  user: "chani", // Replace with actual user ID
+//  imgRouting: "../../../../assets/cheese_pizza.jpg"
+//,)
                 new Recipe(
   "Banana Bread",
   "Baking", // Bread category ID
@@ -87,9 +87,9 @@ namespace server.Controllers
 ),
                 new Recipe(
   "Brownies",
-  "Baking", // Baking category ID
-  40,
-  2, // Medium difficulty level
+  "Dessert", // Baking category ID
+  125,
+  3, // Medium difficulty level
   DateTime.Now,
   new List<string>() {
     "1 1/2 cups all-purpose flour",

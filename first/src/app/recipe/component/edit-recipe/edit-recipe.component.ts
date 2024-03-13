@@ -161,7 +161,8 @@ import { CategoryService } from '../../../category.service';
 import { Recipe } from '../../../classes/recipe.class';
 import { User } from '../../../classes/user.class';
 import { UserService } from '../../../user/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -171,181 +172,155 @@ import { Router } from '@angular/router';
   styleUrl: './edit-recipe.component.scss'
 })
 export class EditRecipeComponent implements OnInit {
+  recipeForm: FormGroup | any;
+  categories: Category[] = [];
+  categoryId: any;
+  recipe: Recipe = new Recipe();
+  userName: any;
+
+  public recipeId!: number
+  recipeDetails!: Recipe;
+  category!: Category;
+  constructor(
+    private fb: FormBuilder,
+    private _categoryService: CategoryService,
+    private _recipeService: RecipeService,
+    private _userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.route.params.subscribe((param) => {
+      this.recipeId = param['id'];
+      console.log("this.recipeId", this.recipeId)
+      this._recipeService.getRecipeById(this.recipeId).subscribe({
+        next: (res) => {
+          this.recipeDetails = res
+          console.log("11111resipeDetails", this.recipeDetails)
+          this.getCategories()
+          this.initForm()
+          // this.recipeOwner = this.recipeDetails.user
+      //     this._categoryService.getAllCategory().subscribe({
+      //       next: (res) => {
+      //         this.categories = res;
+      //         setTimeout(() => {
+      //           this.initForm();
+      //         }, 0);
+      //       },
+      //       error: (err) => {
+      //         console.log(err);
+      //       }
+      //     });
+      //   },
+      //   error: (err) => {
+      //     console.log(err);
+        }
+      })
+    })
+
+  }
+  initFormDetails() {
+    this.route.params.subscribe((param) => {
+      this.recipeId = param['id'];
+      console.log("this.recipeId", this.recipeId)
+      this._recipeService.getRecipeById(this.recipeId).subscribe({
+        next: (res) => {
+          this.recipeDetails = res
+          console.log("11111resipeDetails", this.recipeDetails)
+          // this.recipeOwner = this.recipeDetails.user
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    })
   }
 
-//   editRecipeForm: FormGroup | any;
-//   editCategories: Category[] = [];
-// 	editCategoryId: any;
-// 	editRecipe: Recipe=new Recipe();
-// 	editUserName: any;
+  initForm(): void {
+    console.log("name", this.recipeDetails.name);
+    this.recipeForm = this.fb.group({
+      minutes: [this.recipeDetails.minutes, Validators.required],
+      difficultyLevel: [this.recipeDetails.difficultyLevel, Validators.required],
+      dateAdded: [this.recipeDetails.dateAdd, Validators.required],
+      category: [this.recipeDetails.category],
+      ingredients: this.fb.array([]),
+      instructions: this.fb.array([]),
+      imgRouting: [this.recipeDetails.imgRouting]
+    });
+  }
 
-//   constructor(
-//     private fb: FormBuilder,
-//     private categoryService: CategoryService,
-//     private recipeService: RecipeService,
-// 	private _userService:UserService,
-// 	private router:Router
-//    ) { }
+  get ingredients(): FormArray {
+    return this.recipeForm.get('ingredients') as FormArray;
+  }
 
-//   ngOnInit(): void {
-// 	this.checkUserLogin();
-//     this.getCategories();
-//     this.initForm();
-//   }
+  // get ingredients(): FormArray {
+  //   return this.recipeForm.get('ingredients') as FormArray;
+  // }
 
-//   initForm(): void {
-//     this.editRecipeForm = this.fb.group({
-//       name: ['', Validators.required],
-//       minutes: ['', Validators.required],
-//       difficultyLevel: ['', Validators.required],
-//       dateAdded: ['', Validators.required],
-//       category: ['', Validators.required],
-//       ingredients: this.fb.array([]),
-//       instructions: this.fb.array([]),
-//       imgRouting:['']
-//     });
-//   }
+  addIngredient(name:string='1'): void {
+    this.ingredients.push(this.fb.control(name));
+    console.log(this.ingredients)
+  } 
+  addInstruction(name:string='1'): void {
+    this.instructions.push(this.fb.control(name));
+    console.log(this.instructions)
+  }
+  removeInstructions(index: number): void {
+    this.instructions.removeAt(index);
+  }
+  removeIngredient(index: number): void {
+    this.ingredients.removeAt(index);
+  }
+  get instructions(): FormArray {
+    return this.recipeForm.get('instructions') as FormArray;
+  }
+  onSubmit(): void {
+    this.categoryId = this.recipeForm.value.category
+    console.log("-----categoryid--------", this.categoryId)
+    this.userName = sessionStorage.getItem("currentUserName")?.toString()
+    console.log("userName-------------------", this.userName)
+    this.recipe.user = this.userName
+    this.recipe.category = this.recipeForm.value.category
+    this.recipe.name = this.recipeForm.value.name
+    this.recipe.minutes = this.recipeForm.value.minutes
+    // this.recipe.category = this.recipeForm.value.category
+    this.recipe.ingredients = this.recipeForm.value.ingredients
+    this.recipe.difficultyLevel = this.recipeForm.value.difficultyLevel
+    this.recipe.imgRouting = this.recipeForm.value.imgRouting
+    this.recipe.instructions = this.recipeForm.value.instructions
+    this.recipe.dateAdd = new Date()
+    console.log("--------------------recipe--------------------", this.recipe)
 
-//   get ingredients(): FormArray {
-//     return this.editRecipeForm.get('ingredients') as FormArray;
-//   }
+    this._recipeService.addRecipe(this.recipe).subscribe({
+      next: (res) => {
+        console.log(res)
+        Swal.fire({
+          title: "Browo!!!!",
+          text: "your new recipe saved!!!!",
+          icon: "success"
+        });
+        this.router.navigate(["home/"])
 
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
 
+  }
+  resetForm(): void {
+    // Reset form values
+    this.recipeForm.reset();
 
-//   addIngredient(): void {
-//     this.ingredients.push(this.fb.control(''));
-//     console.log(this.ingredients)
-//   }  addInstruction(): void {
-//     this.instructions.push(this.fb.control(''));
-//     console.log(this.instructions)
-//   }
+    // Clear ingredient and instruction arrays
+    this.ingredients.clear();
+    this.instructions.clear();
+  }
+  private getCategories(): void {
+    this._categoryService.getAllCategory().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
 
-
-//   removeInstructions(index: number): void {
-//     this.instructions.removeAt(index);
-//   }
-//   removeIngredient(index: number): void {
-//     this.ingredients.removeAt(index);
-//   }
-//   get instructions(): FormArray {
-//     return this.editRecipeForm.get('instructions') as FormArray;
-//   }
-
-
-//   onSubmit(): void {
-// 	this.editCategoryId = this.editRecipeForm.value.category
-// 	console.log("categoryName--------", this.editCategoryId)
-// 	this.categoryService.getCategoryById(this.editCategoryId).subscribe({
-// 		next: (res) => {
-// 			this.editRecipe.category = res;
-// 			console.log("this.recipe.category", this.editRecipe.category)
-// 		},
-// 		error: (err) => {
-// 			console.log(err);
-// 		}
-// 	});
-// 	this.editUserName = sessionStorage.getItem("currentUserName")?.toString()
-// 	console.log("userName-------------------", this.editUserName)
-// 	this._userService.getUserByName(this.editUserName?.toString()).subscribe({
-// 		next: (res) => {
-// 			this.editRecipe.user = res;
-// 			console.log("this.recipe.user", this.editRecipe.user)
-// 		},
-// 		error: (err) => {
-// 			console.log(err);
-// 		}
-// 	});
-// 	this.editRecipe.name = this.editRecipeForm.value.name
-// 		this.editRecipe.minutes = this.editRecipeForm.value.minutes
-// 		this.editRecipe.ingredients = this.editRecipeForm.value.ingredients
-// 		this.editRecipe.difficultyLevel = this.editRecipeForm.value.difficultyLevel
-// 		this.editRecipe.imgRouting = this.editRecipeForm.value.imgRouting
-// 		this.editRecipe.instructions = this.editRecipeForm.value.instructions
-// 	console.log("--------------------recipe--------------------",this.editRecipe)
-
-//     this.recipeService.addRecipe(this.editRecipe).subscribe(() => {
-//       let timerInterval!: any;
-
-//       function closePopup() {
-//         clearInterval(timerInterval);
-//         Swal.close();
-//       }
-      
-//       Swal.fire({
-//         title: "Adding your new recipe! Thanks!",
-//         html: "Saving<b></b> ms",
-//         timer: 500,
-//         timerProgressBar: true,
-//         didOpen: () => {
-//         //   Swal.showLoading();
-//           const timerEl = Swal.getPopup()?.querySelector("b");
-      
-//           if (timerEl) {
-//             timerInterval = setInterval(() => {
-//               timerEl.textContent = `${Swal.getTimerLeft()}`;
-//             }, 100);
-//           } else {
-//             console.error("לא נמצא אלמנט <b> ב-popup");
-//             closePopup();
-//           }
-//         },
-//         willClose: () => {
-//           clearInterval(timerInterval);
-//         }
-//       }).then((result) => {
-//         /* קרא עוד על טיפול בביטולים למטה */
-//         if (result.dismiss === Swal.DismissReason.timer) {
-//           console.log("נסגרתי על ידי הטיימר");
-//         }
-//       });
-      
-//       // הוסף כפתור לסגירה ידנית
-//       const closeButton = document.createElement("button");
-//       closeButton.textContent = "סגור";
-//       closeButton.classList.add("swal2-button", "swal2-button--cancel");
-//       closeButton.addEventListener("click", closePopup);
-      
-//       Swal.getPopup()?.appendChild(closeButton);
-//       this.resetForm();
-//     })
-    
-// }
-
-// resetForm(): void {
-//   // Reset form values
-//   this.editRecipeForm.reset();
-
-//   // Clear ingredient and instruction arrays
-//   this.ingredients.clear();
-//   this.instructions.clear();
-// }
-//   private getCategories(): void {
-//     this.categoryService.getAllCategory().subscribe(categories => {
-//       this.editCategories = categories;
-//     });
-//   }
-//   checkUserLogin() {
-// 	console.log("before move");
-// 	if (sessionStorage.getItem("currentUserName") === null) {
-// 		// שמור את נתוני הניווט לשימוש לאחר ההרשמה
-// 		// this.loginRedirectUrl = ;
-// 		Swal.fire({
-// 			title: "The system was not logged in!",
-// 			text: "Move to login!",
-// 			icon: "info"
-// 		}).then(() => {
-// 			this.router.navigate(["user/login"]);
-// 			sessionStorage.setItem("isPath", "true")
-// 			sessionStorage.setItem("add-recipe", `true`)
-// 		});
-
-// 	}
-// 	// this.router.navigate(["recipe/recipe-details", this.recipeChild?.id]);
-
-// 	console.log("after move");
-
-
-// }
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../recipe.service';
 import { Category } from '../../../classes/category.class';
 import { CategoryService } from '../../../category.service';
+// import { FormatTimePipe } from '../../../format-time.pipe';
 // import "../../../../assets/top-view-baking-ingredients_217819-57.jpg"
 @Component({
   selector: 'app-recipe-details',
@@ -38,7 +39,7 @@ export class RecipeDetailsComponent implements OnInit {
           this._categoryService.getCategoryByName(this.recipeDetails.category).subscribe({
             next: (res) => {
               this.category = res
-              console.log("category----------------", this.category.name)
+              console.log("category----------------", this.category)
             },
             error: (err) => {
               console.log(err);
